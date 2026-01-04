@@ -1,0 +1,117 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    string nama[36];     
+    int nilai[36];       
+    int jumlah = 0;       
+    char indeksKelas = 'A';
+    int menu;
+    int a = 30000;
+    int b = 10000;
+    int hitung = a-b ;
+    int c = 625 ;
+    int d = 25;
+    int e = 25;
+    int f = 1;
+    int angkatan = e/f;
+    double tahun = hitung + angkatan;
+
+
+    while (true) {
+        cout << "SISTEM NILAI MAHASISA IF ANGKATAN  " << tahun << " KELAS :  " << indeksKelas << "\n";
+        cout << "1. Tambah Data Mahasiswa\n";
+        cout << "2. Lihat Semua Data\n";
+        cout << "3. Cari Mahasiswa\n";
+        cout << "4. Statistik Nilai (A-E)\n";
+        cout << "5. Keluar\n";
+        cout << "Pilih menu: ";
+        cin >> menu;
+
+        switch (menu) {
+            case 1: {
+                cout << "Masukkan nama: ";
+                cin >> nama[jumlah];
+
+                cout << "Masukkan nilai: ";
+                cin >> nilai[jumlah];
+
+                jumlah++;
+                cout << "Data berhasil ditambahkan.\n";
+                break;
+            }
+
+            case 2: {
+                if (jumlah == 0) {
+                    cout << "Belum ada data!\n";
+                } else {
+                    cout << "\n--- DAFTAR MAHASISWA ---\n";
+                    for (int i = 0; i < jumlah; i++) {
+                        cout << i+1 << ". " << nama[i] << " | Nilai: " << nilai[i] << " | Indeks: ";
+
+                        if (nilai[i] >= 80) cout << "A";
+                        else if (nilai[i] >= 68) cout << "B";
+                        else if (nilai[i] >= 55) cout << "C";
+                        else if (nilai[i] >= 45) cout << "D";
+                        else cout << "E";
+
+                        cout << endl;
+                    }
+                }
+                break;
+            }
+
+            case 3: {
+                string cari;
+                cout << "Masukkan nama yang dicari: ";
+                cin >> cari;
+
+                bool ketemu = false;
+
+                for (int i = 0; i < jumlah; i++) {
+                    if (nama[i] == cari) {
+                        cout << "Ditemukan!\n";
+                        cout << "Nama : " << nama[i] << endl;
+                        cout << "Nilai: " << nilai[i] << endl;
+                        ketemu = true;
+                        break;
+                    }
+                }
+
+                if (!ketemu) {
+                    cout << "Mahasiswa tidak ditemukan.\n";
+                }
+
+                break;
+            }
+
+            case 4: {
+                int A=0, B=0, C=0, D=0, E=0;
+
+                for (int i = 0; i < jumlah; i++) {
+                    if (nilai[i] >= 80) A++;
+                    else if (nilai[i] >= 68) B++;
+                    else if (nilai[i] >= 55) C++;
+                    else if (nilai[i] >= 45) D++;
+                    else E++;
+                }
+
+                cout << "\n  STATISTIK NILAI  \n";
+                cout << "A: " << A << " mahasiswa\n";
+                cout << "B: " << B << " mahasiswa\n";
+                cout << "C: " << C << " mahasiswa\n";
+                cout << "D: " << D << " mahasiswa\n";
+                cout << "E: " << E << " mahasiswa\n";
+                break;
+            }
+
+            case 5:
+                cout << "Program selesai.\n";
+                return 0;
+
+            default:
+                cout << "Menu tidak valid!\n";
+        }
+    }
+return 0;
+}
